@@ -6,14 +6,15 @@ require 'template_cache/version'
 Gem::Specification.new do |spec|
   spec.name          = "fastly-rails-template_cache"
   spec.version       = FastlyRails::TemplateCache::VERSION
-  spec.authors       = ["jgdreyes"]
-  spec.email         = ["jgdreyes@gmail.com"]
+  spec.authors       = ["Borrowed & Blue"]
+  spec.email         = ["hello@borrowedandblue.com"]
 
-  spec.summary       = %q{test}
-  spec.description   = %q{test}
-  #spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Add rendered templates to Surrogate-Key header for Fastly.}
+  spec.description   = %q{Keep track of which templates were rendered for each cached page in Fastly.}
+  spec.homepage      = "https://github.com/borrowedandblue/fastly-rails-template_cache"
   spec.license       = "MIT"
 
+  # TODO: Determine what to add here
   ## Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   ## delete this section to allow pushing this gem to any host.
   #if spec.respond_to?(:metadata)
