@@ -1,6 +1,6 @@
 # TemplateCache extension to FastlyRails
 
-From Fastly's Blog:
+From Fastly's Blog post [Surrogate Keys: Part 1](https://www.fastly.com/blog/surrogate-keys-part-1):
 > Since you’re caching entire pages, just updating the header template isn’t enough. You’ll also need to purge all the pages that use this template. While you could purge every page on the site, there’s no reason to purge content that doesn’t use the header template.
 >
 > Surrogate keys to the rescue! You can add surrogate keys for each template on a page (e.g. /templates/pic/show, /templates/pic/header, /templates/pic/comment). During deployment, you can check which templates have changed and only purge pages with modified templates.
