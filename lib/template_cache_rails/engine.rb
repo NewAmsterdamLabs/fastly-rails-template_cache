@@ -1,8 +1,8 @@
 module FastlyRails
-  module TemplateCache
+  module TemplateCacheRails
     class Engine < ::Rails::Engine
       initializer "fastly-rails-template_cache.initialize" do |app|
-        FastlyRails::TemplateCache::Listener.initialize!(app)
+        FastlyRails::TemplateCacheRails.initialize!(app)
       end
     end
   end

@@ -1,5 +1,5 @@
 module FastlyRails
-  module TemplateCache
+  class TemplateCache
     module BindMethods
       def bind_to_template_render
         klass = ActionView::Template
@@ -11,7 +11,7 @@ module FastlyRails
         klass.send :alias_method, without_listening, method
         klass.send :define_method, with_listening do |*args, &orig|
           name = @identifier.split('app/views/').last
-          FastlyRails::TemplateCache::Listener.add_template(name)
+          FastlyRails::TemplateCache.add_template(name)
           result = self.send without_listening, *args, &orig
           result
         end

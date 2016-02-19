@@ -1,5 +1,5 @@
 module FastlyRails
-  module TemplateCache
+  class TemplateCache
     VERSION = "0.1.0"
   end
 end
