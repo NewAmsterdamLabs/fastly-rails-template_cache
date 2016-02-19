@@ -1,15 +1,18 @@
-# TemplateCache
+# TemplateCache extension to FastlyRails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/template_cache`. To experiment with that code, run `bin/console` for an interactive prompt.
+From Fastly's Blog:
+> Since you’re caching entire pages, just updating the header template isn’t enough. You’ll also need to purge all the pages that use this template. While you could purge every page on the site, there’s no reason to purge content that doesn’t use the header template.
+>
+> Surrogate keys to the rescue! You can add surrogate keys for each template on a page (e.g. /templates/pic/show, /templates/pic/header, /templates/pic/comment). During deployment, you can check which templates have changed and only purge pages with modified templates.
 
-TODO: Delete this and the text above, and describe your gem
+But how can we easily keep the list of templates rendered for each page?  We could do this manually, but that would be time consuming and error prone.  The TemplateCache extension to Fastly-Rails adds each rendered template to the `Surroage-Keys` header on each request.  A set of rake tasks are provided to keep track of the digests of each template in your application.  On each deploy, just run `$ rake fastly:template_cache:purge_stale` to purge all records that rely on modified templates.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'template_cache'
+gem 'fastly-rails-template_cache'
 ```
 
 And then execute:
@@ -18,7 +21,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install template_cache
+    $ gem install fastly-rails-template_cache
 
 ## Usage
 
