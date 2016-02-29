@@ -26,7 +26,10 @@ namespace :fastly do
         [template.inspect, Digest::MD5.hexdigest(template.source)]
       end
 
-      File.open(File.join(Rails.root, 'public/view_digest_manifest.json'), 'w') do |file|
+      config = Rails.application.config
+      public_asset_path = File.join(Rails.public_path, config.assets.prefix)
+
+      File.open(File.join(public_asset_path, 'view_digest_manifest.json'), 'w') do |file|
         file.puts manifest_data.to_json
       end
 
