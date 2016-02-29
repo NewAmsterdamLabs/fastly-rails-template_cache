@@ -11,7 +11,9 @@ module FastlyRails
       end
 
       def add_template(name)
-        RequestStore.store[:fastly_rails_template_cache_templates] << name
+        if RequestStore.store[:fastly_rails_template_cache_templates]
+          RequestStore.store[:fastly_rails_template_cache_templates] << name
+        end
       end
 
       def start
