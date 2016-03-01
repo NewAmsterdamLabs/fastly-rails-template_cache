@@ -1,37 +1,11 @@
 namespace :fastly do
   namespace :template_cache do
 
-    desc 'Generate template digest manfiest'
-    task :generate_manifest => :environment do
-      puts "generating manifest"
-      lookup_context = ApplicationController.new.lookup_context
+    desc 'Print out template digest manfiest'
+    task :print_manifest => :environment do
 
-      # TODO: Only selecting the default app/views path.  Make this more generic at some point
-      path_selection = 'app/views'
-      view_paths = lookup_context.view_paths.select {|path| path.inspect =~ /#{path_selection}/ }
-
-      templates = view_paths.map do |path|
-        file_glob = File.join(path.to_s, '**/*')
-        Dir.glob(file_glob).map do |file_path|
-          if File.file?(file_path)
-            view_path = file_path.split(path_selection).last
-
-            # Try both partial true and false
-            lookup_context.find_all(view_path) + lookup_context.find_all(view_path, [], true)
-          end
-        end
-      end
-
-      manifest_data = templates.flatten.compact.map do |template|
-        [template.inspect, Digest::MD5.hexdigest(template.source)]
-      end
-
-      config = Rails.application.config
-      public_asset_path = File.join(Rails.public_path, config.assets.prefix)
-
-      File.open(File.join(public_asset_path, 'view_digest_manifest.json'), 'w') do |file|
-        file.puts manifest_data.to_json
-      end
+      manifest = FastlyRails::TemplateCache::Manifest.new
+      puts manifest.view_templates.to_json
 
     end
 
