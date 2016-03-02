@@ -44,11 +44,11 @@ module FastlyRails
       private
 
       def extract_previous_data
-        JSON.parse(File.read(@previous_manifest))
+        JSON.parse(@previous_manifest)
       end
 
       def extract_current_data
-        JSON.parse(File.read(@current_manifest))
+        JSON.parse(@current_manifest)
       end
     end
   end
