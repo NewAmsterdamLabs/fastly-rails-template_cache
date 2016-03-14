@@ -23,11 +23,12 @@ module FastlyRails
           end
 
           @view_templates = templates.flatten.compact.map do |template|
-            [template.inspect, Digest::MD5.hexdigest(template.source)]
+            name = template.inspect.split('app/views/').last
+            [name, Digest::MD5.hexdigest(template.source)] if name.present?
           end
         end
 
-        @view_templates
+        @view_templates.compact
       end
     end
   end
